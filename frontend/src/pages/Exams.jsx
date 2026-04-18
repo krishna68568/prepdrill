@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Clock, FileQuestion, ArrowRight, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 
-const CATS = ["All", "SSC", "CAT", "GATE"];
+const CATS = ["All", "SSC", "CAT", "GATE", "Railways", "Police", "REET"];
 
 export default function Exams() {
     const [tests, setTests] = useState([]);

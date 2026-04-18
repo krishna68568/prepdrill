@@ -704,15 +704,27 @@ async def on_startup():
         })
         log.info("Seeded demo student %s", demo_email)
 
-    # Seed questions + mock tests (only if collection empty)
-    if await db.questions.count_documents({}) == 0:
-        questions = build_seed_questions()
-        await db.questions.insert_many(questions)
-        log.info("Seeded %d questions", len(questions))
-        mock_tests = build_seed_mock_tests(questions)
-        if mock_tests:
-            await db.mock_tests.insert_many(mock_tests)
-            log.info("Seeded %d mock tests", len(mock_tests))
+    # Seed questions + mock tests (per-exam idempotent: add any exam that has no questions yet)
+    all_seed_questions = build_seed_questions()
+    new_questions: list[dict] = []
+    existing_exams = set(await db.questions.distinct("exam"))
+    for q in all_seed_questions:
+        if q["exam"] not in existing_exams:
+            new_questions.append(q)
+    if new_questions:
+        await db.questions.insert_many(new_questions)
+        log.info("Seeded %d questions for exams: %s",
+                 len(new_questions), sorted({q["exam"] for q in new_questions}))
+
+    # For any exam that now has questions but no mock test, create a seed mock test
+    all_questions = await db.questions.find({}, {"_id": 0}).to_list(5000)
+    existing_test_exams = set(await db.mock_tests.distinct("exam"))
+    seed_mocks = build_seed_mock_tests(all_questions)
+    new_mocks = [m for m in seed_mocks if m["exam"] not in existing_test_exams]
+    if new_mocks:
+        await db.mock_tests.insert_many(new_mocks)
+        log.info("Seeded %d mock tests for exams: %s",
+                 len(new_mocks), sorted({m["exam"] for m in new_mocks}))
 
 
 @app.on_event("shutdown")

@@ -13,7 +13,10 @@ import {
 } from "lucide-react";
 
 const EXAMS = [
-    { slug: "SSC", title: "SSC", desc: "Combined Graduate Level, CHSL, MTS and more — bite-sized daily drills in Quant, Reasoning, English & GA.", stat: "20+ questions" },
+    { slug: "SSC", title: "SSC", desc: "CGL, CHSL, MTS and more — bite-sized daily drills in Quant, Reasoning, English & GA.", stat: "20+ questions" },
+    { slug: "Railways", title: "Railways", desc: "RRB NTPC, Group D & ALP — GA, Maths, Reasoning and General Science for a career on the tracks.", stat: "RRB NTPC · Group D" },
+    { slug: "Police", title: "Police", desc: "State SI & Constable + CAPF — GK, Reasoning, Maths, and English aligned to recruitment patterns.", stat: "SI · Constable" },
+    { slug: "REET", title: "REET", desc: "Rajasthan Eligibility Exam for Teachers — CDP, Hindi, English, Maths and Environmental Studies.", stat: "Level 1 & 2" },
     { slug: "CAT", title: "CAT", desc: "Quant, Verbal, and LR-DI for MBA aspirants with AI-powered concept breakdowns and shortcuts.", stat: "Updated daily" },
     { slug: "GATE", title: "GATE", desc: "Computer Science core: Algorithms, OS, DBMS, Networks — practice with solution-by-solution clarity.", stat: "30+ topics" },
 ];
@@ -36,7 +39,7 @@ export default function Landing() {
                 <div className="grain absolute inset-0 opacity-60 pointer-events-none" />
                 <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-4 py-20 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-8 lg:py-28">
                     <div className="lg:col-span-7 flex flex-col justify-center">
-                        <div className="overline mb-4" data-testid="hero-tagline">SSC · CAT · GATE</div>
+                        <div className="overline mb-4" data-testid="hero-tagline">SSC · Railways · Police · REET · CAT · GATE</div>
                         <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black tracking-tighter leading-[1.05] mb-6">
                             Crack the exam.
                             <br />
@@ -61,8 +64,8 @@ export default function Landing() {
                             </Button>
                         </div>
                         <div className="mt-10 flex items-center gap-8 text-sm">
-                            <div><span className="font-mono text-xl font-bold">30+</span><span className="ml-2 text-muted-foreground">sample questions</span></div>
-                            <div><span className="font-mono text-xl font-bold">3</span><span className="ml-2 text-muted-foreground">full mock tests</span></div>
+                            <div><span className="font-mono text-xl font-bold">60+</span><span className="ml-2 text-muted-foreground">sample questions</span></div>
+                            <div><span className="font-mono text-xl font-bold">6</span><span className="ml-2 text-muted-foreground">full mock tests</span></div>
                             <div><span className="font-mono text-xl font-bold">AI</span><span className="ml-2 text-muted-foreground">powered</span></div>
                         </div>
                     </div>
@@ -124,9 +127,9 @@ export default function Landing() {
                             <Link to={user ? "/exams" : "/signup"}>See all mock tests <ArrowRight className="ml-2 h-4 w-4" /></Link>
                         </Button>
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                         {EXAMS.map((e, idx) => (
-                            <Card key={e.slug} className={`border-border ${idx === 1 ? "bg-primary text-primary-foreground" : ""}`} data-testid={`exam-card-${e.slug}`}>
+                            <Card key={e.slug} className={`border-border transition-all hover:-translate-y-1 hover:shadow-md ${idx === 1 ? "bg-primary text-primary-foreground hover:shadow-none" : ""}`} data-testid={`exam-card-${e.slug}`}>
                                 <CardContent className="p-8">
                                     <div className={`overline mb-4 ${idx === 1 ? "text-primary-foreground/70" : ""}`}>{e.stat}</div>
                                     <h3 className="font-display text-4xl font-black tracking-tight mb-3">{e.title}</h3>
@@ -168,7 +171,7 @@ export default function Landing() {
             <footer className="border-t border-border">
                 <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
                     <div>© {new Date().getFullYear()} ExamAce. Built for aspirants.</div>
-                    <div className="font-mono text-xs">SSC · CAT · GATE</div>
+                    <div className="font-mono text-xs">SSC · Railways · Police · REET · CAT · GATE</div>
                 </div>
             </footer>
         </div>

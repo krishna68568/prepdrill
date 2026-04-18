@@ -118,7 +118,7 @@ export default function AdminQuestions() {
                     <Select value={filter} onValueChange={setFilter}>
                         <SelectTrigger className="w-32" data-testid="admin-questions-filter"><SelectValue /></SelectTrigger>
                         <SelectContent>
-                            {["All", "SSC", "CAT", "GATE"].map((c) => <SelectItem key={c} value={c}>{c}</SelectItem>)}
+                            {["All", "SSC", "CAT", "GATE", "Railways", "Police", "REET"].map((c) => <SelectItem key={c} value={c}>{c}</SelectItem>)}
                         </SelectContent>
                     </Select>
                     <Button onClick={openNew} data-testid="admin-new-question-btn">
@@ -172,6 +172,9 @@ export default function AdminQuestions() {
                                         <SelectItem value="SSC">SSC</SelectItem>
                                         <SelectItem value="CAT">CAT</SelectItem>
                                         <SelectItem value="GATE">GATE</SelectItem>
+                                        <SelectItem value="Railways">Railways</SelectItem>
+                                        <SelectItem value="Police">Police</SelectItem>
+                                        <SelectItem value="REET">REET</SelectItem>
                                     </SelectContent>
                                 </Select>
                             </div>

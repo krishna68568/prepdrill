@@ -28,7 +28,8 @@ Build a full-stack AI-powered web application similar to Testbook, focused on co
 
 ## What's Implemented (2026-02-18)
 - [x] JWT auth with bcrypt, admin role, admin seed, demo student seed
-- [x] 30 seed questions (10 SSC + 10 CAT + 10 GATE), 3 seed mock tests
+- [x] **60 seed questions across 6 exams** (SSC, CAT, GATE, Railways, Police, REET — 10 each) and **6 seed mock tests**
+- [x] Per-exam idempotent seed: adding a new exam automatically seeds its questions + mock test on startup
 - [x] Landing page (hero, features, exam bento, final CTA, footer)
 - [x] Signup + Login pages with demo-credentials helper
 - [x] Dashboard with stat cards + accuracy trend chart + recent results

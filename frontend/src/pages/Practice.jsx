@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
 
-const FILTERS = ["All", "SSC", "CAT", "GATE"];
+const FILTERS = ["All", "SSC", "CAT", "GATE", "Railways", "Police", "REET"];
 
 export default function Practice() {
     const [loading, setLoading] = useState(true);

@@ -174,6 +174,9 @@ export default function AdminTests() {
                                             <SelectItem value="SSC">SSC</SelectItem>
                                             <SelectItem value="CAT">CAT</SelectItem>
                                             <SelectItem value="GATE">GATE</SelectItem>
+                                            <SelectItem value="Railways">Railways</SelectItem>
+                                            <SelectItem value="Police">Police</SelectItem>
+                                            <SelectItem value="REET">REET</SelectItem>
                                         </SelectContent>
                                     </Select>
                                 </div>
