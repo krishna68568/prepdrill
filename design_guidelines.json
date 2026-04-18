@@ -1,0 +1,144 @@
+{
+  "theme": "light",
+  "archetype": "Swiss & High-Contrast mixed with Organic & Earthy",
+  "brand_identity": {
+    "vibe": "Premium, focused, structured, motivating",
+    "description": "A high-end productivity tool crossed with a study-craft application. Avoids the typical 'tech SaaS purple' or generic 'Testbook blue'. Focuses on deep concentration, high contrast readability, and organic premium touches to reduce eye strain and build authority."
+  },
+  "typography": {
+    "heading_font": "Cabinet Grotesk",
+    "body_font": "Satoshi",
+    "mono_font": "JetBrains Mono",
+    "scale": {
+      "h1": "text-4xl sm:text-5xl lg:text-6xl tracking-tighter font-black",
+      "h2": "text-2xl sm:text-3xl lg:text-4xl tracking-tight font-bold",
+      "h3": "text-xl sm:text-2xl tracking-tight font-semibold",
+      "h4": "text-lg sm:text-xl font-medium",
+      "body": "text-base leading-relaxed text-foreground/80",
+      "small": "text-sm text-foreground/60",
+      "overline": "text-xs uppercase tracking-[0.2em] font-semibold text-primary/70",
+      "timer": "font-mono text-2xl font-bold tracking-tight"
+    },
+    "instructions": "Never use Inter, Roboto, or Space Grotesk. Headings must be tight. Overlines must be wide. Mono font is exclusively for the Mock Test timer, code snippets, and short-tricks."
+  },
+  "color_palette": {
+    "mode": "light",
+    "hsl_variables": {
+      "--background": "60 10% 96%",
+      "--foreground": "210 11% 15%",
+      "--card": "0 0% 100%",
+      "--card-foreground": "210 11% 15%",
+      "--popover": "0 0% 100%",
+      "--popover-foreground": "210 11% 15%",
+      "--primary": "145 58% 9%",
+      "--primary-foreground": "0 0% 100%",
+      "--secondary": "40 33% 93%",
+      "--secondary-foreground": "145 58% 9%",
+      "--muted": "60 5% 90%",
+      "--muted-foreground": "210 11% 40%",
+      "--accent": "14 100% 57%",
+      "--accent-foreground": "0 0% 100%",
+      "--destructive": "0 84% 60%",
+      "--destructive-foreground": "0 0% 100%",
+      "--success": "142 71% 45%",
+      "--success-foreground": "0 0% 100%",
+      "--warning": "43 96% 56%",
+      "--warning-foreground": "0 0% 100%",
+      "--border": "210 11% 85%",
+      "--input": "210 11% 85%",
+      "--ring": "145 58% 9%",
+      "--radius": "0.5rem"
+    },
+    "descriptions": {
+      "primary": "Deep Evergreen (#0A2518) - Used for primary actions, heavy text, deep contrast containers.",
+      "secondary": "Warm Sand (#F0EBE1) - Used for soft backgrounds, AI explanation blocks, and subtle active states.",
+      "accent": "Blaze Orange (#FF5722) - Used sparingly for calls to action, important highlights, 'Ask Doubt' triggers, and the 'Current Question' border.",
+      "background": "Off-White/Paper (#F5F5F4) - Reduces eye strain for long study sessions.",
+      "success": "Green - For correct answers and attempted questions in the palette.",
+      "warning": "Amber - For 'Marked for Review' state."
+    }
+  },
+  "spacing_and_layout": {
+    "general": "Follow generous spacing for marketing pages (p-12, p-24) and tight 'Control Room' grid spacing (gap-4, p-4) for the test interfaces and dashboards.",
+    "dashboard": "Use CSS Grid. 3-4 columns. Top row: Summary widgets (col-span-1). Middle: Main chart or Daily practice (col-span-2 or 3). Right: Activity Feed (col-span-1 row-span-2).",
+    "mock_test_interface": "Split layout: 70% left panel (Question & Options), 30% right panel (Palette & Timer). Use h-screen to lock scroll on body, allowing independent scrolling inside the panels.",
+    "daily_practice": "High negative space, center-focused layout (max-w-3xl).",
+    "corners": "Rounded-lg (8px) for cards, rounded-md (6px) for buttons. Avoid fully rounded pill shapes except for status badges."
+  },
+  "component_styling": {
+    "cards": "Flat background (bg-card), 1px subtle border (border-border), no shadow by default. Hover: slight lift (-translate-y-1), subtle shadow (shadow-md).",
+    "buttons": {
+      "primary": "bg-primary text-primary-foreground hover:bg-primary/90 font-medium active:scale-[0.98] transition-transform",
+      "accent": "bg-accent text-accent-foreground hover:bg-accent/90 font-medium",
+      "outline": "border border-border hover:bg-muted font-medium"
+    },
+    "mcq_options": "Large clickable blocks. Default: border border-border hover:border-primary/50. Selected: border-primary bg-primary/5. Correct: border-success bg-success/10 text-success. Wrong: border-destructive bg-destructive/10 text-destructive.",
+    "question_palette_grid": "Grid of small square buttons (w-10 h-10). Unattempted: bg-muted text-muted-foreground. Attempted: bg-success text-success-foreground. Marked: bg-warning text-warning-foreground. Current: border-2 border-accent.",
+    "ai_explanation_block": "Soft bg-secondary, p-6, rounded-lg, border-l-4 border-accent. Typography inside should use markdown prose styling but with Satoshi font."
+  },
+  "micro_interactions": {
+    "hover": "All interactive elements must have a transition. transition-all duration-200 ease-out.",
+    "click": "Buttons and MCQ options should scale down slightly on click (active:scale-[0.98]).",
+    "ai_reveal": "Expand AI explanation smoothly using Framer Motion (height: 0 -> auto, opacity: 0 -> 1)."
+  },
+  "accessibility_and_testing": {
+    "contrast": "Ensure text over primary buttons is pure white. Muted text must still be readable against background.",
+    "data_testid": "MANDATORY: All interactive elements, form inputs, buttons, and dynamic content blocks MUST have a data-testid attribute in kebab-case (e.g., 'start-mock-test-btn', 'mcq-option-a', 'ai-explanation-toggle')."
+  },
+  "page_specific_guidelines": {
+    "landing_page": {
+      "structure": "Hero section with large headline, transparent nav (Crystal Glass variant), overlapping images, Bento grid for Exam Categories (SSC, CAT, GATE).",
+      "visuals": "Use dark_learning_bg or hero_background behind the hero section with a heavy overlay if text contrast is needed."
+    },
+    "student_dashboard": {
+      "structure": "Grid layout. Stats cards on top. 'Quick Start Daily Practice' as a prominent banner card. Progress Recharts line chart."
+    },
+    "mock_test": {
+      "structure": "Fixed header with 'JetBrains Mono' timer and 'Submit Test' button. Left side scrollable questions. Right side fixed grid palette."
+    },
+    "performance_analytics": {
+      "structure": "Dense data view. Use Shadcn Table for past tests. Use Recharts for accuracy trends and topic strengths."
+    },
+    "admin_panel": {
+      "structure": "Sidebar navigation. Data tables with filters for CRUD operations on questions and tests. Strict, functional layout."
+    }
+  },
+  "media_assets": {
+    "logos": {
+      "app_logo": {
+        "url": "https://static.prod-images.emergentagent.com/jobs/345c4802-5f99-40b5-88d7-f895682a87a2/images/c4c2f7d969837158849189829e88fd3b86ce92e2d71f3a18db611c8cd86b4273.png",
+        "usage": "Main application logo for header and auth pages."
+      }
+    },
+    "backgrounds": {
+      "hero_background": {
+        "url": "https://static.prod-images.emergentagent.com/jobs/345c4802-5f99-40b5-88d7-f895682a87a2/images/af15bee770a4c25b012cedbd10c580c4879fb8f37949b2650568529dff2cd1a3.png",
+        "usage": "Hero section background on the landing page. Apply a light overlay (bg-white/40 or bg-white/70) for text legibility."
+      },
+      "dark_learning_bg": {
+        "url": "https://static.prod-images.emergentagent.com/jobs/345c4802-5f99-40b5-88d7-f895682a87a2/images/d69ac051cb4a4a4aa29f254ab329e33d9c1f81845f5c642b0f873989c923f709.png",
+        "usage": "Use as a background for 'Call to Action' banners or inverted dark sections on marketing pages."
+      }
+    },
+    "imagery": {
+      "progress_abstract": {
+        "url": "https://static.prod-images.emergentagent.com/jobs/345c4802-5f99-40b5-88d7-f895682a87a2/images/d7b9d49aa9f5a120e1a1b1b966d53b55a678a899482a4ddaf24a6834d5a0c43b.png",
+        "usage": "Feature section image representing progression, learning, and mock test improvement."
+      },
+      "student_studying_1": {
+        "url": "https://images.unsplash.com/photo-1494809610410-160faaed4de0?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1MDZ8MHwxfHNlYXJjaHwzfHxzdHVkZW50JTIwbGlicmFyeXxlbnwwfHx8fDE3NzY1MzE5NjV8MA&ixlib=rb-4.1.0&q=85",
+        "usage": "Use in 'About Us' or 'Join Community' sections."
+      },
+      "exam_preparation": {
+        "url": "https://images.unsplash.com/photo-1758525861622-f4e7ac86a2d7?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzV8MHwxfHNlYXJjaHwyfHxleGFtJTIwcHJlcGFyYXRpb258ZW58MHx8fHwxNzc2NTMxOTY1fDA&ixlib=rb-4.1.0&q=85",
+        "usage": "Use for the 'Daily Practice' marketing block or blog header."
+      }
+    }
+  },
+  "library_recommendations": {
+    "icons": "lucide-react (default for UI), @phosphor-icons/react (for sophisticated duotone icons on marketing pages).",
+    "charts": "recharts (for performance analytics).",
+    "animations": "framer-motion (for daily practice option selection and AI reveal).",
+    "components": "shadcn/ui (Tailwind customized as per guidelines above)."
+  }
+}
