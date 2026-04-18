@@ -16,6 +16,8 @@ import {
     Line,
 } from "recharts";
 import { toast } from "sonner";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 export default function Analytics() {
     const [perf, setPerf] = useState(null);
@@ -154,7 +156,9 @@ export default function Analytics() {
                         )}
                     </div>
                     {feedback ? (
-                        <div className="prose-ace whitespace-pre-wrap text-sm leading-relaxed" data-testid="analytics-feedback-text">{feedback}</div>
+                        <div className="prose-ace text-sm leading-relaxed" data-testid="analytics-feedback-text">
+                            <ReactMarkdown remarkPlugins={[remarkGfm]}>{feedback}</ReactMarkdown>
+                        </div>
                     ) : (
                         <p className="text-sm text-muted-foreground">Get a personalized study plan powered by AI — tailored to your weak topics.</p>
                     )}

@@ -7,6 +7,8 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { CheckCircle2, XCircle, Clock, Sparkles, Loader2, ArrowLeft, Minus } from "lucide-react";
 import { toast } from "sonner";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 const letters = ["A", "B", "C", "D"];
 
@@ -123,8 +125,8 @@ export default function MockResult() {
                         )}
                     </div>
                     {feedback ? (
-                        <div className="prose-ace text-sm whitespace-pre-wrap leading-relaxed text-secondary-foreground" data-testid="feedback-text">
-                            {feedback}
+                        <div className="prose-ace text-sm leading-relaxed text-secondary-foreground" data-testid="feedback-text">
+                            <ReactMarkdown remarkPlugins={[remarkGfm]}>{feedback}</ReactMarkdown>
                         </div>
                     ) : (
                         <p className="text-sm text-muted-foreground">Click "Generate feedback" for a personalized study plan based on all your attempts across practice and mocks.</p>

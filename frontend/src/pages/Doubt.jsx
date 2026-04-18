@@ -5,6 +5,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { Sparkles, Send, Loader2, Bot, User as UserIcon } from "lucide-react";
 import { toast } from "sonner";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 export default function Doubt() {
     const [messages, setMessages] = useState([]);
@@ -75,8 +77,12 @@ export default function Doubt() {
                                 <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-md ${m.role === "user" ? "bg-primary text-primary-foreground" : "bg-accent/10 text-accent"}`}>
                                     {m.role === "user" ? <UserIcon className="h-4 w-4" /> : <Bot className="h-4 w-4" />}
                                 </div>
-                                <div className={`rounded-lg px-4 py-3 max-w-[75%] text-sm leading-relaxed whitespace-pre-wrap ${m.role === "user" ? "bg-primary text-primary-foreground" : "bg-secondary text-secondary-foreground"}`}>
-                                    {m.text}
+                                <div className={`rounded-lg px-4 py-3 max-w-[75%] text-sm leading-relaxed ${m.role === "user" ? "bg-primary text-primary-foreground whitespace-pre-wrap" : "bg-secondary text-secondary-foreground prose-ace"}`}>
+                                    {m.role === "user" ? (
+                                        m.text
+                                    ) : (
+                                        <ReactMarkdown remarkPlugins={[remarkGfm]}>{m.text}</ReactMarkdown>
+                                    )}
                                 </div>
                             </div>
                         ))

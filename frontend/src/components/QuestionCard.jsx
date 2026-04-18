@@ -5,6 +5,8 @@ import { Badge } from "@/components/ui/badge";
 import { api, formatApiError } from "@/lib/api";
 import { Sparkles, Wand2, CheckCircle2, XCircle, Loader2 } from "lucide-react";
 import { toast } from "sonner";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 const letters = ["A", "B", "C", "D"];
 
@@ -188,8 +190,8 @@ export default function QuestionCard({ question, index, total, onAnswered }) {
                                 <Sparkles className="h-3.5 w-3.5" /> AI Explanation
                             </div>
                             {explanation.explanation && (
-                                <div className="prose-ace text-sm leading-relaxed text-secondary-foreground whitespace-pre-wrap">
-                                    {explanation.explanation}
+                                <div className="prose-ace text-sm leading-relaxed text-secondary-foreground">
+                                    <ReactMarkdown remarkPlugins={[remarkGfm]}>{explanation.explanation}</ReactMarkdown>
                                 </div>
                             )}
                             {explanation.trick && (
