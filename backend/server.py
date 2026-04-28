@@ -624,13 +624,19 @@ async def doubt_history(user: dict = Depends(get_current_user)):
 @api.get("/admin/users")
 async def admin_users(_: dict = Depends(require_admin)):
     docs = await db.users.find({}, {"_id": 0, "password_hash": 0}).to_list(1000)
-    # count attempts per user
-    out = []
-    for u in docs:
-        n_attempts = await db.attempts.count_documents({"user_id": u["id"]})
-        n_tests = await db.test_results.count_documents({"user_id": u["id"]})
-        out.append({**u, "attempts": n_attempts, "tests": n_tests})
-    return out
+    # Batch-aggregate counts in 2 queries instead of N*2
+    attempts_counts = {
+        d["_id"]: d["count"]
+        async for d in db.attempts.aggregate([{"$group": {"_id": "$user_id", "count": {"$sum": 1}}}])
+    }
+    tests_counts = {
+        d["_id"]: d["count"]
+        async for d in db.test_results.aggregate([{"$group": {"_id": "$user_id", "count": {"$sum": 1}}}])
+    }
+    return [
+        {**u, "attempts": attempts_counts.get(u["id"], 0), "tests": tests_counts.get(u["id"], 0)}
+        for u in docs
+    ]
 
 
 @api.get("/admin/stats")
